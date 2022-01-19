@@ -11,8 +11,6 @@ function save(){
         alert("Cannot save!");
         return;
     }
-    //convert string to numbers
-   
     
 	//send request
 	let req = new XMLHttpRequest();

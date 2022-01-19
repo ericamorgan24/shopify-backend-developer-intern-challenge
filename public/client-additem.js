@@ -1,5 +1,5 @@
 function add(){
-	//create new restaurant object
+	//create new item object
 	let newItem = {};
 	newItem.name = document.getElementById("name").value;
 	newItem.price = Number(document.getElementById("price").value);
@@ -11,7 +11,7 @@ function add(){
         return;
     }
 
-	//sent new restaurant to server
+	//send new item to server
 	let req = new XMLHttpRequest();
 	req.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){

@@ -2,7 +2,6 @@
 const fs = require("fs");
 const pug = require("pug");
 const express = require("express");
-const { emitKeypressEvents } = require("readline");
 const app = express();
 
 //Set up the repetitive responses
