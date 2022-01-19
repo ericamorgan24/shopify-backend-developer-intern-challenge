@@ -1,16 +1,18 @@
 function save(){
 	//create object to represent updated item
     let modItem = {};
-    modItem.id = document.getElementById("itemID").innerText;
     modItem.name = document.getElementById("name").value;
+    modItem.id = Number(document.getElementById("itemID").innerText);
     modItem.price = Number(document.getElementById("price").value);
     modItem.quantity = Number(document.getElementById("quantity").value);
 
 	//check if valid data
-    if (modItem.name == "" || isNaN(modItem.price) || !Number.isInteger(modItem.quantity)){
+    if (modItem.name == "" || modItem.price == "" || modItem.quantity == "" || isNaN(modItem.price) || isNaN(modItem.quantity) || !Number.isInteger(modItem.quantity) || modItem.price < 0 || modItem.quantity < 0){
         alert("Cannot save!");
         return;
     }
+    //convert string to numbers
+   
     
 	//send request
 	let req = new XMLHttpRequest();

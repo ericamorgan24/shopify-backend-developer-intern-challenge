@@ -1,7 +1,7 @@
 {
-  "name": "a3",
+  "name": "shopify-challenge",
   "version": "1.0.0",
-  "description": "Assignment 3",
+  "description": "shopify backend developer intern challenge",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "pug": "^2.0.4",
-    "uuid": "^7.0.2"
+    "pug": "^2.0.4"
   }
 }

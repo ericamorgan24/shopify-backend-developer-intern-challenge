@@ -6,8 +6,21 @@ html
 		include ../partials/header
 		br
 		br
-		input(type="submit" value="Export CSV" onclick="exportCSV()")
-		h2 Select Item: 
+		h2 Filter Items:
+		div(id="filter")
+			div Name: 
+				input(type="text" id="name")
+			div Min Price: $
+				input(type="text" id="minp")
+			div Max Price: $
+				input(type="text" id="maxp")
+			div Min Quantity: 
+				input(type="text" id="minq")
+			div Max Quantity: 
+				input(type="text" id="maxq")
+			br
+			input(type="submit" value="Filter" onclick="filter()")
+		h2 Select Item:
 		div(id="links")
 			each item in Object.keys(items)
 				a(href="/items/"+items[item].id) #{items[item].name}

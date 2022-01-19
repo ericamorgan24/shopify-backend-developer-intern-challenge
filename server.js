@@ -1,8 +1,8 @@
 //require all necessary modules
 const fs = require("fs");
 const pug = require("pug");
-const uuidv4 = require("uuid/v4");
 const express = require("express");
+const { emitKeypressEvents } = require("readline");
 const app = express();
 
 //Set up the repetitive responses
@@ -16,7 +16,7 @@ function send404(response){
 let id = 3;
 let items = {
 	1: { id: 1, name: "Example Item 1", price: 3.5, quantity: 5 }, 
-	2: { id: 2, name: "Example Item 2", price: 5, quantity: 2 }
+	2: { id: 2, name: "Example Item 2", price: 22, quantity: 13 }
 };
 
 
@@ -34,15 +34,22 @@ app.use(express.json());
 app.get("/", function(req, res, next){
 	res.render("pages/home");
 });
-app.get("/items", function(req, res, next){
-	//make array of item IDs
-	let array = [];
-	for(let key in items){
-		array.push(items[key].id);
+app.get("/items", function (req, res, next) {
+	//make array to hold filtered items
+	let queryArray = [];		
+	for (let key in items) {
+		queryArray.push(items[key]);
 	}
+	//filter through items
+	if (req.query.name) queryArray = queryArray.filter(elem => elem.name.toLowerCase().includes(req.query.name.toLowerCase()));
+	if (req.query.minp) queryArray = queryArray.filter(elem => elem.price >= req.query.minp);
+	if (req.query.maxp) queryArray = queryArray.filter(elem => elem.price <= req.query.maxp);
+	if (req.query.minq) queryArray = queryArray.filter(elem => elem.quantity >= req.query.minq);
+	if (req.query.maxq) queryArray = queryArray.filter(elem => elem.quantity <= req.query.maxq);
+	
 	res.format({
-		"text/html" : () => {res.render("pages/items", {items});} , 
-		"application/json" : () => {res.status(200).json({items:array});}
+		"text/html" : () => {res.render("pages/items", {items:queryArray});} , 
+		"application/json" : () => {res.status(200).json({items:queryArray});}
 	});
 })
 app.get("/additem", function(req, res, next){
