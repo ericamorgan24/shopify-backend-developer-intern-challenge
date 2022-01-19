@@ -1,0 +1,15 @@
+html
+	head
+		title All Items
+		link(rel="stylesheet" type="text/css" href="items.css")
+	body
+		include ../partials/header
+		br
+		br
+		input(type="submit" value="Export CSV" onclick="exportCSV()")
+		h2 Select Item: 
+		div(id="links")
+			each item in Object.keys(items)
+				a(href="/items/"+items[item].id) #{items[item].name}
+				br
+		script(src="client-items.js")
